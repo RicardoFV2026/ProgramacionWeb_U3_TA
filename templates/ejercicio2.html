@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 2 - Nombres</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='estilos.css') }}">
+</head>
+<body>
+
+<div class="contenedor">
+
+    <h1>Formulario de Nombres</h1>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <form action="/procesar_nombres" method="POST">
+
+        <label for="nombre1">Nombre 1:</label>
+        <input type="text" id="nombre1" name="nombre1"
+               required value="{{ nombre1 | default('') }}">
+
+        <label for="nombre2">Nombre 2:</label>
+        <input type="text" id="nombre2" name="nombre2"
+               required value="{{ nombre2 | default('') }}">
+
+        <label for="nombre3">Nombre 3:</label>
+        <input type="text" id="nombre3" name="nombre3"
+               required value="{{ nombre3 | default('') }}">
+
+        <button type="submit" class="boton-enviar">
+            Enviar
+        </button>
+
+    </form>
+
+    {% if nombre is defined %}
+        <div class="resultado">
+            <p>Nombre más largo: {{ nombre }}</p>
+            <p>Cantidad de caracteres: {{ cantidad }}</p>
+        </div>
+    {% endif %}
+
+    <a href="/" class="enlace-volver">Volver al menú</a>
+
+</div>
+
+</body>
+</html>
